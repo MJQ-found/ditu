@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include "graph_adj_list.h"
+#include "graph_adj_matrix.h"
 
 int main() {
-    GraphAdjList graph;
+    GraphAdjMatrix graph;
     
-    printf("=== 景区路径规划系统 (邻接表实现) ===\n\n");
+    printf("=== 景区路径规划系统 (邻接矩阵实现) ===\n\n");
     
     createGraph(&graph, 0);
     
