@@ -353,3 +353,59 @@ void al_dfs(AdjacencyList* graph, int start) {
         }
     }
 }
+
+void al_bfs(AdjacencyList* graph, int start) {
+    bool visited[MAX_VERTEX_NUM];
+    int queue[MAX_VERTEX_NUM];
+    int front = 0, rear = 0;
+    int i;
+    if (graph == NULL) {
+        printf("错误: 图为空\n");
+        return;
+    }
+    if (start < 0 || start >= graph->vertexCount) {
+        printf("错误: 无效起始顶点索引 %d\n", start);
+        return;
+    }
+    for (i = 0; i < MAX_VERTEX_NUM; i++) {
+        visited[i] = false;
+    }
+    printf("从 %c 开始的广度优先遍历: ", graph->vertices[start].data);
+    queue[rear++] = start;
+    visited[start] = true;
+    while (front < rear) {
+        int current = queue[front++];
+        printf("%c ", graph->vertices[current].data);
+        EdgeNode* edge = graph->vertices[current].firstEdge;
+        while (edge != NULL) {
+            if (!visited[edge->adjVertex]) {
+                visited[edge->adjVertex] = true;
+                queue[rear++] = edge->adjVertex;
+            }
+            edge = edge->next;
+        }
+    }
+    printf("\n");
+
+    for (i = 0; i < graph->vertexCount; i++) {
+        if (!visited[i]) {
+            printf("从 %c 开始的广度优先遍历 (非连通分量): ", graph->vertices[i].data);
+            front = rear = 0;
+            queue[rear++] = i;
+            visited[i] = true;
+            while (front < rear) {
+                int current = queue[front++];
+                printf("%c ", graph->vertices[current].data);
+                EdgeNode* edge = graph->vertices[current].firstEdge;
+                while (edge != NULL) {
+                    if (!visited[edge->adjVertex]) {
+                        visited[edge->adjVertex] = true;
+                        queue[rear++] = edge->adjVertex;
+                    }
+                    edge = edge->next;
+                }
+            }
+            printf("\n");
+        }
+    }
+}

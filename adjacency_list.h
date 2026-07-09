@@ -36,5 +36,6 @@ int al_updateEdge(AdjacencyList* graph, int from, int to, int newWeight);
 int al_getEdge(AdjacencyList* graph, int from, int to);
 void al_print(AdjacencyList* graph);
 void al_dfs(AdjacencyList* graph, int start);
+void al_bfs(AdjacencyList* graph, int start);
 
 #endif
