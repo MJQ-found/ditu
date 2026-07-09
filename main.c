@@ -12,6 +12,7 @@ void displayMenu() {
     printf("  4. 显示景区图                      \n");
     printf("  5. 显示景点链表                    \n");
     printf("  6. 深度优先遍历                    \n");
+    printf("  7. 广度优先遍历                    \n");
     printf("  0. 退出系统                        \n");
     printf("=====================================\n");
     printf("请输入操作选项: ");
